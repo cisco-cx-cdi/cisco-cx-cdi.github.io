@@ -1,12 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-11-13T14:15:38-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Cisco CX AI&amp;amp;ML</title><subtitle>A website describing all of the awesome AI/ML work being done at Cisco for the Customer Experience organization.</subtitle><author><name>CDI AI&amp;ML Team</name><email>dagriff2@cisco.com</email></author><entry><title type="html">Calibration Curves: How Confident Are Your Confidence Scores?</title><link href="http://localhost:4000/best_practices/calibration-curves-ml/" rel="alternate" type="text/html" title="Calibration Curves: How Confident Are Your Confidence Scores?" /><published>2018-11-10T00:00:00-08:00</published><updated>2018-03-20T13:00:58-07:00</updated><id>http://localhost:4000/best_practices/calibration-curves-ml</id><content type="html" xml:base="http://localhost:4000/best_practices/calibration-curves-ml/">&lt;p&gt;##&lt;/p&gt;
-
-&lt;h2 id=&quot;what-is-prediction-confidence&quot;&gt;What is Prediction Confidence?&lt;/h2&gt;
-
-&lt;p&gt;‘ML Engine’ is am service that google supports that allows a developer to run both ‘training’ and ‘serving’ jobs using google’s resources for ML models. ML Engine is a service that can be called for on-the-spot training of a tensorflow, XGBoost, or now (Think it’s till beta) scikit-learn models. The service provides the option to train a model using GPUs, TPUs and other resources. The service purports to be an on-demand and ‘pay as you use’ methodology for training machine learning models. More about the service can be learned here (https://cloud.google.com/ml-engine/docs/tensorflow/getting-started-training-prediction).&lt;/p&gt;
-
-&lt;h2 id=&quot;how-can-confidence-be-measured&quot;&gt;How Can Confidence Be Measured?&lt;/h2&gt;
-
-&lt;p&gt;Bayesian, Calibration Curves, Prediction Distributions&lt;/p&gt;</content><author><name>CDI AI&amp;ML Team</name><email>dagriff2@cisco.com</email></author><category term="Machine_Learning, Calibration_Curve" /><summary type="html">##</summary></entry><entry><title type="html">Open Data Science 2018 Conference Highlights</title><link href="http://localhost:4000/conference/open-data-science-conference/" rel="alternate" type="text/html" title="Open Data Science 2018 Conference Highlights" /><published>2018-11-06T00:00:00-08:00</published><updated>2018-03-20T13:00:58-07:00</updated><id>http://localhost:4000/conference/open-data-science-conference</id><content type="html" xml:base="http://localhost:4000/conference/open-data-science-conference/">&lt;p&gt;Conference Date: 11/2/2018-11/3/2018&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-11-13T14:49:56-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Cisco CX AI&amp;amp;ML</title><subtitle>A website describing all of the awesome AI/ML work being done at Cisco for the Customer Experience organization.</subtitle><author><name>CDI AI&amp;ML Team</name><email>dagriff2@cisco.com</email></author><entry><title type="html">Open Data Science 2018 Conference Highlights</title><link href="http://localhost:4000/conference/open-data-science-conference/" rel="alternate" type="text/html" title="Open Data Science 2018 Conference Highlights" /><published>2018-11-06T00:00:00-08:00</published><updated>2018-03-20T13:00:58-07:00</updated><id>http://localhost:4000/conference/open-data-science-conference</id><content type="html" xml:base="http://localhost:4000/conference/open-data-science-conference/">&lt;p&gt;Conference Date: 11/2/2018-11/3/2018&lt;/p&gt;
 
 &lt;h2 id=&quot;key-conference-takeaways&quot;&gt;Key Conference Takeaways&lt;/h2&gt;
 
@@ -181,7 +173,7 @@
 
 &lt;p&gt;In this approach, a GPU is connected to the master node of the spark cluster, and the dataproc docker container is run on the master node. Users remotely connect to the master, and then run their respective code on the master node. Thus, this is called a ‘Fat Master’ approach because the master of the spark cluster has a large amount of resources, along with attached GPUs so that Spark and Deep Learning GPU based models and frameworks can be used simultaneously. A diagram of the method is provided below.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/datalab_method_2.png&quot; alt=&quot;Remote Datalab&quot; title=&quot;Remote Datalab&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/posts/datalab_method_2.png&quot; alt=&quot;Remote Datalab&quot; title=&quot;Remote Datalab&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;method-2&quot;&gt;Method 2&lt;/h3&gt;
 
@@ -191,7 +183,7 @@
 
 &lt;p&gt;In this approach, an independent Datalab with its own connected GPU is created. This instance runs on its own, separate GCE instance outside of the Dataproc spark cluster. The Datalab instance connects to the Dataproc spark cluster master remotely by using the hosted ‘livy’ spark server (generated by an initialization script), and the ‘spark magic’ jupyter notebook package. Thus, this is called a ‘Thin Master’ approach because spark code is scheduled and run on the remote Dataproc cluster, while any GPU and local python code is run in the Datalab instance. A diagram of the method is provided below.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/datalab_method_1.png&quot; alt=&quot;Datalab Remote Spark&quot; title=&quot;Datalab Remote Spark&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;//assets/images/posts/datalab_method_1.png&quot; alt=&quot;Datalab Remote Spark&quot; title=&quot;Datalab Remote Spark&quot; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;what-are-the-specific-commands-we-use-to-createuse-dataproc&quot;&gt;What are the specific commands we use to create/use Dataproc?&lt;/h2&gt;
 
