@@ -1,0 +1,13 @@
+# /_data/authors.yml
+
+Seokho Hong:
+  name        : "Seokho Hong"
+  bio         : "DSX AI/ML Data Scientist Manager."
+  avatar      : "/assets/images/bio-photo.jpg"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:hseokho@cisco.com"
+    - label: "Linked-In"
+      icon: "fas fa-fw fa-link"
+      url: "unk"

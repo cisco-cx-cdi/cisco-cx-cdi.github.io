@@ -1,0 +1,90 @@
+---
+permalink: /projects/
+title: "CX AI&ML Project List"
+excerpt: ""
+layout: single
+layouts_gallery:
+  - url: /assets/images/mm-layout-splash.png
+    image_path: /assets/images/mm-layout-splash.png
+    alt: "splash layout example"
+  - url: /assets/images/mm-layout-single-meta.png
+    image_path: /assets/images/mm-layout-single-meta.png
+    alt: "single layout with comments and related posts"
+  - url: /assets/images/mm-layout-archive.png
+    image_path: /assets/images/mm-layout-archive.png
+    alt: "archive layout example"
+header:
+  overlay_image: /assets/images/unsplash-image-1.jpg
+  overlay_filter: 0.5 # same as adding an opacity of 0.5 to a black background
+
+last_modified_at: 2018-06-04T12:04:24-04:00
+toc: true
+author_profile: true
+author:
+  name             : "Dan Griffin"
+  avatar           : "/assets/images/team/daniel_griffin.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  bio              : "DSX AI/ML Data Scientist Focused on Customer Based AI Initiatives."
+  location         : "SJC-16-4"
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: mailto:dagriff2@cisco.com
+    - label: "Linked-In"
+      icon: "fas fa-fw fa-link"
+      url: "https://www.linkedin.com/in/daniel-griffin-b36b6aa2"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/dcompgriff"
+    - label: "Cisco GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://wwwin-github.cisco.com/GVS-CS-DSX"
+---
+
+# Project List
+
+
+## Customer
+* [DNAC Customer Lifecycle Racetrack](customer/dnac_racetrack)
+* *Check Back Later, More Pages Are Currently Being Developed*
+
+## Seller
+* *Check Back Later, More Pages Are Currently Being Developed*
+
+
+## Partner
+* *Check Back Later, More Pages Are Currently Being Developed*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,787 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-11-13T14:15:38-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Cisco CX AI&amp;amp;ML</title><subtitle>A website describing all of the awesome AI/ML work being done at Cisco for the Customer Experience organization.</subtitle><author><name>CDI AI&amp;ML Team</name><email>dagriff2@cisco.com</email></author><entry><title type="html">Calibration Curves: How Confident Are Your Confidence Scores?</title><link href="http://localhost:4000/best_practices/calibration-curves-ml/" rel="alternate" type="text/html" title="Calibration Curves: How Confident Are Your Confidence Scores?" /><published>2018-11-10T00:00:00-08:00</published><updated>2018-03-20T13:00:58-07:00</updated><id>http://localhost:4000/best_practices/calibration-curves-ml</id><content type="html" xml:base="http://localhost:4000/best_practices/calibration-curves-ml/">&lt;p&gt;##&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-prediction-confidence&quot;&gt;What is Prediction Confidence?&lt;/h2&gt;
+
+&lt;p&gt;‘ML Engine’ is am service that google supports that allows a developer to run both ‘training’ and ‘serving’ jobs using google’s resources for ML models. ML Engine is a service that can be called for on-the-spot training of a tensorflow, XGBoost, or now (Think it’s till beta) scikit-learn models. The service provides the option to train a model using GPUs, TPUs and other resources. The service purports to be an on-demand and ‘pay as you use’ methodology for training machine learning models. More about the service can be learned here (https://cloud.google.com/ml-engine/docs/tensorflow/getting-started-training-prediction).&lt;/p&gt;
+
+&lt;h2 id=&quot;how-can-confidence-be-measured&quot;&gt;How Can Confidence Be Measured?&lt;/h2&gt;
+
+&lt;p&gt;Bayesian, Calibration Curves, Prediction Distributions&lt;/p&gt;</content><author><name>CDI AI&amp;ML Team</name><email>dagriff2@cisco.com</email></author><category term="Machine_Learning, Calibration_Curve" /><summary type="html">##</summary></entry><entry><title type="html">Open Data Science 2018 Conference Highlights</title><link href="http://localhost:4000/conference/open-data-science-conference/" rel="alternate" type="text/html" title="Open Data Science 2018 Conference Highlights" /><published>2018-11-06T00:00:00-08:00</published><updated>2018-03-20T13:00:58-07:00</updated><id>http://localhost:4000/conference/open-data-science-conference</id><content type="html" xml:base="http://localhost:4000/conference/open-data-science-conference/">&lt;p&gt;Conference Date: 11/2/2018-11/3/2018&lt;/p&gt;
+
+&lt;h2 id=&quot;key-conference-takeaways&quot;&gt;Key Conference Takeaways&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;“Software 2.0”
+    &lt;ul&gt;
+      &lt;li&gt;AI, and in particular deep learning methods, is very powerful. AI models can be viewed as another way to ‘write’ a program. Instead of using procedural code, you simply give the program the desired input/output combinations, and it learns the proper program matching the inputs and outputs.&lt;/li&gt;
+      &lt;li&gt;To reliably and effectively develop “Software 2.0”, there needs to be a change in how development is approached. The following is a high outline of what was proposed:
+        &lt;ul&gt;
+          &lt;li&gt;Version Data Sets Used for Train/Test&lt;/li&gt;
+          &lt;li&gt;Version Models&lt;/li&gt;
+          &lt;li&gt;Use a ‘Test Suite’ to compare performance, and to continually check for proper behavior at edge cases&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;“Meta Learning Optimization”
+    &lt;ul&gt;
+      &lt;li&gt;AutoML using Bayseian Optimization was a common topic. New frameworks for distributed genetic algorithms for model architecture search were also presented. There were many talks on different ways to approach optimizing meta-parameters of models.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Explain-ability, Confidence, and Bayesian Methods
+    &lt;ul&gt;
+      &lt;li&gt;There were still many talks on Bayesian Statistics for explainable models with performance/prediction confidence bounds. Many python frameworks were talked about including ‘Pymc3’, ‘Sampyl’, ‘Pomegranate’, ‘Pyro Deep Bayesian Models by Uber’, and some others. We should keep an eye on these, as it finally seems there are some growing Bayesian statistical packages worth using (I just recently used pymc3 in one of our projects).&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;specific-talks&quot;&gt;Specific Talks&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;“An Introduction to Active Learning”&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Speaker: Jennifer Prendki, VP of ML at Figure Eight&lt;/li&gt;
+      &lt;li&gt;Active learning is the process of ‘Intelligently Selecting’ data to be labeled from a set of unlabeled data. It is a sub-set of Semi-supervised learning, which focuses on how to use unlabeled data to augment and improve the learning process given a limited set of labeled training data.&lt;/li&gt;
+      &lt;li&gt;Active learning focuses on ‘query’ mechanisms for selecting the ‘most confusing’ or ‘most challenging’ data from a data set to label.&lt;/li&gt;
+      &lt;li&gt;Active learning (and Semi-supervised learning) doesn’t give you more performance that supervised learning does if you had a sufficiently large labeled data set. Rather, it gives you higher performance given the same amount of labeled data, when labeled data isn’t totally sufficient for a task.&lt;/li&gt;
+      &lt;li&gt;Active learning and Semi-supervised learning causes a performance decrease in ~90% of papers published. This is attributed to the arbitrary selection of query strategies in these cases.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;“How Reliable are Machine Learning Benchmarks? A Reproducibility Study on CIFAR-10”&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Speaker: Ludwig Schmidt, PhD, Post-Doc at UC Berkeley&lt;/li&gt;
+      &lt;li&gt;Most computer vision models are evaluated against the same test set year after year. This introduces a potential for over-fitting. In this talk, the speaker described how the way ML models are generally evaluated has the potential to cause “Overfitting through Adaptivity”. The idea is that you must perform ‘Reliability testing for a large number of adaptively chosen hypothesis (models) to perform hypothesis corrections’. (Methods to combat this in statistics are Benjamini Hochberg procedure, Post-selection inference, Differential Privacy,…)&lt;/li&gt;
+      &lt;li&gt;He proposes that most machine learning methods must have the following to prevent overfitting through adaptivity:
+        &lt;ul&gt;
+          &lt;li&gt;Register a well-specified experimental protocol and analysis.&lt;/li&gt;
+          &lt;li&gt;Collect data and evaluate according to pre-specified method.&lt;/li&gt;
+          &lt;li&gt;Each new iteration of model testing/benchmarking, use a new test set generated from the pre-specified method.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;When evaluating the CIFAR benchmark, model performance ranking relative to each-other remains the same. Thus, in this instance, there isn’t overfitting through adaptivity. This is potentially explained by the ‘Ladder Mechanism, which is a method that guarantees no overfitting that was introduced in a paper by Avrim Blum (2016).&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;“Experiments on AutoML in the Enterprise”&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Speaker: Erez Sali, PhD, Co founder, CTO, Firefly.ai&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Focus on existing AutoAI packages for developing models.&lt;/li&gt;
+      &lt;li&gt;Most used packages are: &lt;em&gt;Auto sklearn, SMAC, Spearmint, RoBO&lt;/em&gt;.&lt;/li&gt;
+      &lt;li&gt;Most methods are just intelligent search or Bayesian optimization approaches. There are still may limitations to this kind of AutoML (And it somewhat differs from AutoML in the context of network architecture search for deep models).&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;“Quantifying Uncertainty: Bayesian Data Analysis in Python”&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Speaker: Mat Leonard, Product Lead, Udacity&lt;/li&gt;
+      &lt;li&gt;Main contention is that cross-validation validates nothing, pvalues are only useful if you can quantify your uncertainty in them (thus the pvalue distribution is more important than the value itself. Pvalue can be arbitrarily significant given its distribution. So, pvalues alone should not be trusted.)&lt;/li&gt;
+      &lt;li&gt;If you approach modeling (At least in the linear sense) models using priors, likelihoods, and posteriors, you can generate parameter and prediction ‘credible intervals’ which can tell you things like ‘95% of the time, the prediction will fall into the range [x1, x2]’, which regular statistical confidence intervals cannot.&lt;/li&gt;
+      &lt;li&gt;We should think about applying this approach for the models that we have that are logistic regression models (It’s fairly straight-forward to do).&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;“Continuous Experiment Framework at Uber” (https://eng.uber.com/xp/)&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Speaker: Jermy Gu, Senior Data Scientist, Uber&lt;/li&gt;
+      &lt;li&gt;This talk focused on how Uber does “Continuous Testing” (A continuous, online, and adaptive version of A/B testing)&lt;/li&gt;
+      &lt;li&gt;The speaker talks about how A/B testing can be costly when running the experiment has an ‘opportunity cost’ because of the waste in a test configuration that doesn’t work. By framing testing as a multi-armed bandit problem, and using a policy like Thompson Sampling, an A/B test can be changed to something that dynamically updates the distribution of which customers get which test configurations, and minimizes opportunity costs.&lt;/li&gt;
+      &lt;li&gt;They have 4 use cases at Uber:&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ol&gt;
+      &lt;li&gt;Optimizing tests over the best email subject line to use. (Content optimization)
+     * Email subject lines, in-app messaging, US campaigns, LATAM and EMEA Campaigns, Mobile/Web Design Optimization.&lt;/li&gt;
+      &lt;li&gt;Optimizing over the best models and parameters to use for a particular task. (Using contextual multi-armed bandits with Bayesian optimization)
+     * Uber Eats Ranking
+     * Recommendation System for Uber Trips&lt;/li&gt;
+      &lt;li&gt;Optimizing how uber performs spending.
+     * Optimal bidding strategy
+     * Optimal promo strategy&lt;/li&gt;
+      &lt;li&gt;Automating product feature rollouts.
+     * Power and Risk based methods for deciding rollout percentage&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name>CDI AI&amp;ML Team</name><email>dagriff2@cisco.com</email></author><category term="conference, active learning, bayesian optimization, bayesian statistics packages, continuous experimentation" /><summary type="html">Conference Date: 11/2/2018-11/3/2018</summary></entry><entry><title type="html">Deep Learning on GCP: Datalab vs ML Engine</title><link href="http://localhost:4000/best_practices/deeplearning-gcp-mlengine-datalab-compare/" rel="alternate" type="text/html" title="Deep Learning on GCP: Datalab vs ML Engine" /><published>2018-10-02T00:00:00-07:00</published><updated>2018-03-20T13:00:58-07:00</updated><id>http://localhost:4000/best_practices/deeplearning-gcp-mlengine-datalab-compare</id><content type="html" xml:base="http://localhost:4000/best_practices/deeplearning-gcp-mlengine-datalab-compare/">&lt;h2 id=&quot;what-is-ml-engine&quot;&gt;What is ML Engine?&lt;/h2&gt;
+
+&lt;p&gt;‘ML Engine’ is am service that google supports that allows a developer to run both ‘training’ and ‘serving’ jobs using google’s resources for ML models. ML Engine is a service that can be called for on-the-spot training of a tensorflow, XGBoost, or now (Think it’s till beta) scikit-learn models. The service provides the option to train a model using GPUs, TPUs and other resources. The service purports to be an on-demand and ‘pay as you use’ methodology for training machine learning models. More about the service can be learned here (https://cloud.google.com/ml-engine/docs/tensorflow/getting-started-training-prediction).&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-datalab&quot;&gt;What is Datalab?&lt;/h2&gt;
+
+&lt;p&gt;‘Datalab’ is an automated set of ‘configurations’ that have been written by google, that can be started up on any google cloud compute instance. Technically it is a ‘Docker’ container (More info on docker here: https://docs.docker.com/get-started/, TOTALLY LEARN IT!!!), which is why the configuration run on any google cloud compute instance. Datalab includes configurations for a datascience environment, as well as utilities for visualizing data sets. It also acts as a general ‘drop in’ for python ‘jupyter’ notebooks. Google’s documentation about datalab can be found here: https://cloud.google.com/datalab/docs/quickstart.&lt;/p&gt;
+
+&lt;p&gt;Our team uses datalab in two main ways. The first main way is to run datalab in its own instance on google cloud compute. This method is the simplest for quick jobs, or when you need a dedicated GPU environment for running your code. Since this method starts datalab on its own instance, it does not natively have access to any spark computing clusters. However, an individual datalab instance can be connected to a remote spark cluster. The second method can be used when you need dedicated GPU, CPU, or RAM resources for running your code. It provides a quick and fairly simple way to spin up an instance (although it takes around 11 minutes to spin up) where you have dedicated access to everything. The downside here is that the remote connection to the spark cluster through a jupyter notebook is somewhat finicky. For example, imports of packages must be made from within the cell that will run on spark if you have custom packages to run. There are some potential ways around this (create an import_func() that simply imports all packages, and call that at the beginning of each cell that will run on spark).&lt;/p&gt;
+
+&lt;h2 id=&quot;what-are-the-ways-we-train-deep-learning-based-models-on-gcp&quot;&gt;What are the ways we train ‘Deep Learning’ based models on GCP?&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Attach a GPU to a Datalab instance. (Our team preferrs this at the moment)&lt;/li&gt;
+  &lt;li&gt;Train by sending a model and data to ‘ML Engine’.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;why-do-we-currently-prefer-to-attach-a-gpu-instead-of-call-ml-engine&quot;&gt;Why do we currently prefer to attach a GPU instead of call ML Engine?&lt;/h2&gt;
+
+&lt;p&gt;Our team prefers enabling GPU based deep neural network training by attaching a dedicated GPU to our datalab or dataproc master instances rather than trying to utilize ML engine. There are many reasons for this, including ease of use, reduced lost developer time,and avoiding the hacky method to train models in a notebook. The reality of ML engine is that the service’s design implies that you simply build a model once, and then train it, and then deploy. As we all know, this is not the truth, and you often iteratively improve a model’s performance. Thus, being able to alternate between making a change in your model and training it quickly and seamlessly is very important. It’s possible to do this with GCP, but only in a very hacky way (aka, structuring the actual model code as a python package with its own setup file, using  %%writetofile to write a model from a jupyter notebook,  and %%bash to ship pre-processed data to google cloud buckets, to run the google cloud ML Engine command line command to train the model from within a jupyter notebook, and again using it to download the trained model back to the local notebook). While configuring projects like this might be a good practice to move towards as we develop new models, it’s currently not a very advantageous use of time and resources, unless code requires TPUs to be able to iterate on model development.&lt;/p&gt;
+
+&lt;h2 id=&quot;guides-for-both-methods&quot;&gt;Guides for Both Methods&lt;/h2&gt;
+
+&lt;h3 id=&quot;terminal-only-method-of-training-with-ml-engine&quot;&gt;Terminal only method of training with ‘ML Engine’&lt;/h3&gt;
+
+&lt;p&gt;Quickstart Guide: https://cloud.google.com/ml-engine/docs/tensorflow/getting-started-training-prediction&lt;/p&gt;
+
+&lt;h3 id=&quot;training-on-ml-engine-from-within-a-notebook&quot;&gt;Training on ‘ML Engine’ from within a notebook&lt;/h3&gt;
+
+&lt;p&gt;Packaging the python code for training: https://cloud.google.com/ml-engine/docs/tensorflow/packaging-trainer&lt;/p&gt;
+
+&lt;p&gt;Running the custom code from within a jupyter notebook (Follow this tutorial): https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/machine_learning/deepdive/06_structured&lt;/p&gt;
+
+&lt;h3 id=&quot;ml-engine-guides-httpsgithubcomgooglecloudplatformtraining-data-analyst&quot;&gt;ML Engine Guides: (https://github.com/GoogleCloudPlatform/training-data-analyst)&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Custom python model packaging (Can be done from within a notebook):
+    &lt;ul&gt;
+      &lt;li&gt;https://towardsdatascience.com/how-to-train-machine-learning-models-in-the-cloud-using-cloud-ml-engine-3f0d935294b3&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Good Example Code:
+    &lt;ul&gt;
+      &lt;li&gt;https://github.com/GoogleCloudPlatform/training-data-analyst&lt;/li&gt;
+      &lt;li&gt;(Some examples of full jupyter notebook based method of training and deploying models) https://github.com/GoogleCloudPlatform/training-data-analyst/tree/master/courses/machine_learning/deepdive/06_structured&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Example end-to-end model training and deployment:
+    &lt;ul&gt;
+      &lt;li&gt;https://codelabs.developers.google.com/codelabs/cloud-ml-engine-image-classification/index.html?index=..%2F..%2Findex#0&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Cloud ML Samples:
+    &lt;ul&gt;
+      &lt;li&gt;https://github.com/GoogleCloudPlatform/cloudml-samples/&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Python Client API Guide
+    &lt;ul&gt;
+      &lt;li&gt;https://cloud.google.com/ml-engine/docs/tensorflow/python-guide&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>CDI AI&amp;ML Team</name><email>dagriff2@cisco.com</email></author><category term="Google_Cloud, Datalab, Dataproc, GPU, ML_Engine, Cloud_Storage, Google_Cloud_Best_Practices" /><summary type="html">What is ML Engine?</summary></entry><entry><title type="html">Deep Learning With GPUs and Spark on Google Cloud</title><link href="http://localhost:4000/best_practices/deeplearning-on-gcp-gpus/" rel="alternate" type="text/html" title="Deep Learning With GPUs and Spark on Google Cloud" /><published>2018-10-01T00:00:00-07:00</published><updated>2018-03-20T13:00:58-07:00</updated><id>http://localhost:4000/best_practices/deeplearning-on-gcp-gpus</id><content type="html" xml:base="http://localhost:4000/best_practices/deeplearning-on-gcp-gpus/">&lt;h2 id=&quot;what-is-dataproc&quot;&gt;What is Dataproc?&lt;/h2&gt;
+
+&lt;p&gt;‘Dataproc’ is the name for a google cloud service for creating, and managing a hadoop/spark cluster in the cloud. Google cloud offers this service for automatically configuring and provisioning a set of cloud compute instances, and configures them so that they work together as a spark/hadoop cluster. The benefit of using this kind of service is that we as data scientists don’t need to focus on how to configure or manage a spark cluster. We can simply use google to create a totally managed cluster for us that we can just start using. Google documentation about dataproc can be found here: https://cloud.google.com/dataproc/docs/quickstarts.&lt;/p&gt;
+
+&lt;p&gt;The way we use Dataproc is very special. Our team aims to share the same Dataproc cluster for most of our spark jobs. There are 3 different ways in which we can do this. One is to connect to Dataproc remotely (from some other google cloud compute instance), and to run spark jobs. The other two methods require a user to ssh into the ‘master node’ of the Dataproc cluster (A cluster has one master, and many workers. The master is where spark jobs are run and managed), and running code from there. In this method, all team members must share the same master node (Which is why we call it the Fat Master Approach, because everyone shares CPUs/GPUs/RAM for non spark portions of their code). For each of these methods (which we describe below), we have special configuration scripts (which can be seen being referenced in the cluster creation commands).&lt;/p&gt;
+
+&lt;h2 id=&quot;what-are-the-ways-we-use-dataproc&quot;&gt;What are the ways we use Dataproc?&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Dataproc with ‘Datalab’ running on the master, with multiple GPUs (Fat Master Approach)&lt;/li&gt;
+  &lt;li&gt;Dataproc with ‘Jupyter’ running on the master, with multiple GPUs (Fat Master Approach, but with Jupyter intead of Datalab)&lt;/li&gt;
+  &lt;li&gt;Dataproc with ‘livy’ running on the master, where users create separate machines running ‘Datalab’ instances and submit spark jobs to the cluster remotely. (Thin Master Approach)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;dataproc-descriptions&quot;&gt;Dataproc Descriptions&lt;/h2&gt;
+
+&lt;h3 id=&quot;method-1&quot;&gt;Method 1&lt;/h3&gt;
+
+&lt;p&gt;In this approach, a GPU is connected to the master node of the spark cluster, and the dataproc docker container is run on the master node. Users remotely connect to the master, and then run their respective code on the master node. Thus, this is called a ‘Fat Master’ approach because the master of the spark cluster has a large amount of resources, along with attached GPUs so that Spark and Deep Learning GPU based models and frameworks can be used simultaneously. A diagram of the method is provided below.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/datalab_method_2.png&quot; alt=&quot;Remote Datalab&quot; title=&quot;Remote Datalab&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;method-2&quot;&gt;Method 2&lt;/h3&gt;
+
+&lt;p&gt;This method is effectively the same as method 1, but instead of dataproc being run on the instance, jupyter is run instead.&lt;/p&gt;
+
+&lt;h3 id=&quot;method-3&quot;&gt;Method 3&lt;/h3&gt;
+
+&lt;p&gt;In this approach, an independent Datalab with its own connected GPU is created. This instance runs on its own, separate GCE instance outside of the Dataproc spark cluster. The Datalab instance connects to the Dataproc spark cluster master remotely by using the hosted ‘livy’ spark server (generated by an initialization script), and the ‘spark magic’ jupyter notebook package. Thus, this is called a ‘Thin Master’ approach because spark code is scheduled and run on the remote Dataproc cluster, while any GPU and local python code is run in the Datalab instance. A diagram of the method is provided below.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/datalab_method_1.png&quot; alt=&quot;Datalab Remote Spark&quot; title=&quot;Datalab Remote Spark&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;what-are-the-specific-commands-we-use-to-createuse-dataproc&quot;&gt;What are the specific commands we use to create/use Dataproc?&lt;/h2&gt;
+
+&lt;h3 id=&quot;method-1-from-above-section-on-ways-we-use-dataproc&quot;&gt;Method 1 (from above section on ways we use Dataproc):&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Custom script steps for creating a dataproc/datalab cluster with attached GPUs:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Use a modified google ‘datalab’ for dataproc initialization script.&lt;/li&gt;
+  &lt;li&gt;Install Nvidia drivers on node.&lt;/li&gt;
+  &lt;li&gt;Install nvidia-docker and modfiy initializaiton script to use the ‘–runtime=nvidia’ option.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Steps to Create And Connect to the Cluster:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Command to create instance:
+Note here that we have custom initialization scripts for installing GPU drivers in the datalab GCE instance, installing nvidia-docker, and running the datalab docker image in nvidia-docker.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcloud beta dataproc clusters create spark-cluster \
+--bucket vm_space \
+--subnet default \
+--zone us-central1-a \
+--master-machine-type n1-highmem-8 \
+--master-boot-disk-size 50 \
+--master-min-cpu-platform &quot;Intel Skylake&quot; \
+--worker-min-cpu-platform &quot;Intel Skylake&quot; \
+--num-workers 2 \
+--num-preemptible-workers 4 \
+--worker-machine-type n1-highmem-64 \
+--worker-boot-disk-size 200 \
+--preemptible-worker-boot-disk-size 200 \
+--image-version 1.3 \
+--project gvs-cs-cisco \
+--metadata CONDA_PACKAGES=&quot;python==3.5 nltk numpy scikit-learn keras&quot;,MY_PY2_PACKAGES=&quot;tensorflow-gpu==1.8.0 keras&quot;,MY_PY3_PACKAGES=&quot;tensorflow-gpu==1.8.0 keras nltk gensim scikit-learn&quot; \
+--initialization-actions 'gs://dataproc-initialization-actions/conda/bootstrap-conda.sh,gs://dataproc-initialization-actions/livy/livy.sh,gs://dataproc-initialization-actions/conda/install-conda-env.sh,gs://vm_init_scripts/hseokho-datalab-gpu.sh,gs://vm_init_scripts/hseokho-configs.sh' \
+--scopes cloud-platform \
+--master-accelerator type=nvidia-tesla-v100 \
+--properties &quot;\
+yarn:yarn.scheduler.minimum-allocation-vcores=4,\
+capacity-scheduler:yarn.scheduler.capacity.resource-calculator=org.apache.hadoop.yarn.util.resource.DominantResourceCalculator,\
+spark:spark.dynamicAllocation.enabled=true,\
+spark:spark.dynamicAllocation.executorIdleTimeout=5m,\
+spark:spark.dynamicAllocation.cachedExecutorIdleTimeout=1h,\
+spark:spark.dynamicAllocation.initExecutors=10,\
+spark:spark.dynamicAllocation.maxExecutors=500,\
+spark:spark.dynamicAllocation.minExecutors=1,\
+spark:spark.dynamicAllocation.schedulerBacklogTimeout=1s,\
+spark:spark.driver.memory=40g,\
+spark:spark.executor.instances=80,\
+spark:spark.executor.memory=18g,\
+spark:spark.executor.cores=4,\
+spark:spark.task.maxFailures=4,\
+spark:spark.driver.maxResultSize=8g&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Connect to the instance with an ssh tunnel and ‘SOCKS’ proxy server:&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;(In one terminal window, run)&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcloud compute ssh --ssh-flag=&quot;-D&quot; --ssh-flag=&quot;10000&quot; --zone=&quot;us-central1-a&quot; &quot;spark-cluster-m&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Connect to the datalab instance (running in a docker instance on the dataproc master node) thorough your local browser (This command is for MacOs). The basic idea is that in step 2 you created an ssh connection to your cluster, and started a socks proxy locally. This command opens your web browser and tells it to route all webpage requests to the socks server running locally, and pipe them through the ssh terminal to the master node:
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&quot;/Applications/Google Chrome.app/Contents/MacOS/Google Chrome&quot; &quot;http://spark-cluster-m:8080&quot; \
+--proxy-server=&quot;socks5://127.0.0.1:10000&quot; \
+--host-resolver-rules=&quot;MAP * 0.0.0.0 , EXCLUDE localhost&quot; \
+--user-data-dir=/tmp/spark-cluster-m
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;method-2-from-above-section-on-ways-we-use-dataproc&quot;&gt;Method 2 (from above section on ways we use Dataproc):&lt;/h3&gt;
+
+&lt;p&gt;Note that most of this process requires the creator to ssh into the instance, and run many commands themselves (commands that are already bundled together in the dataproc initialization scripts for Method 1).&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Create the instance through the google cloud console, or the command line:
+(With GPU attached to MASTER only)
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcloud beta dataproc clusters create spark-jupyter-cluster \
+--bucket vm_space \
+--subnet default \
+--zone us-central1-a \
+--master-machine-type n1-standard-4 \
+--master-boot-disk-size 500 \
+--num-workers 2 \
+--worker-machine-type n1-standard-4 \
+--worker-boot-disk-size 500 \
+--image-version 1.2 \
+--project gvs-cs-cisco \
+--initialization-actions 'gs://dan-test-bucket/notebooks/create-my-cluster.sh,gs://dataproc-initialization-actions/jupyter/jupyter.sh' \
+--master-accelerator type=nvidia-tesla-k80
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;SSH into the instance, and run/install the NVIDIA GPU drivers. (install_gpu_drivers.sh):
+(Run from the command line on the instance to install nvidia drivers, cuda, cudnn)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# INSTALL NVIDIA DRIVERS
+# Note: The driver install script, CUDA install script, and cuDNN library .tgz file
+# were all directly downloaded from the Nvidia website, and were specified as
+# being for K-80 GPUs, on the 'Generic Linux 64 bit' operating system. More detailed
+# Instructions for how to install the following packages can be found at
+# These links: (Cuda install: https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
+# (CuDNN install: https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html)
+
+sudo apt-get update
+sudo apt-get install -y linux-headers-$(uname -r)
+gsutil cp gs://dan-test-bucket/notebooks/NVIDIA-Linux-x86_64-384.145.run .
+chmod a+rwx NVIDIA-Linux-x86_64-384.145.run
+sudo ./NVIDIA-Linux-x86_64-384.145.run -a -s
+
+# INSTALL CUDA 9.0
+gsutil cp gs://dan-test-bucket/notebooks/cuda_9.0.176_384.81_linux.run .
+chmod a+rwx cuda_9.0.176_384.81_linux.run
+sudo ./cuda_9.0.176_384.81_linux.run --silent
+export PATH=/usr/local/cuda-9.0/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
+# INSTALL cuDNN 7.3
+gsutil cp gs://dan-test-bucket/notebooks/cudnn-9.0-linux-x64-v7.3.1.20.tgz .
+tar -xzvf cudnn-9.0-linux-x64-v7.3.1.20.tgz
+sudo cp cuda/include/cudnn.h /usr/local/cuda/include
+sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
+sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;3) Start a SOCKS server locally, that routes commands to the instance:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcloud compute ssh --ssh-flag=&quot;-D&quot; --ssh-flag=&quot;10000&quot; --zone=&quot;us-central1-a&quot; &quot;spark-jupyter-cluster-m
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;4) Open google chrome, and direct it to use the locally running socks proxy. (I’ve included two commands because it depends on the port you are running your jupyter notebook off of. It may not be 8080 for jupyter as it is for dataproc):
+(For Mac)&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&quot;/Applications/Google Chrome.app/Contents/MacOS/Google Chrome&quot; &quot;http://spark-jupyter-cluster:8123&quot; \
+--proxy-server=&quot;socks5://localhost:10000&quot; \
+--host-resolver-rules=&quot;MAP * 0.0.0.0 , EXCLUDE localhost&quot; \
+--user-data-dir=/tmp/ \
+--incognito
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&quot;/Applications/Google Chrome.app/Contents/MacOS/Google Chrome&quot; &quot;http://spark-jupyter-cluster:8080&quot; \
+--proxy-server=&quot;socks5://localhost:10000&quot; \
+--host-resolver-rules=&quot;MAP * 0.0.0.0 , EXCLUDE localhost&quot; \
+--user-data-dir=/tmp/ \
+--incognito
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;method-3-from-above-section-on-ways-we-use-dataproc&quot;&gt;Method 3 (from above section on ways we use Dataproc):&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Create the DATAPROC cluster with ‘livy’ installed so spark jobs (Note, this is just the cluster):
+(NOTE: You must ALLOW http/https traffic to the master node)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;MoreNotes:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;https://github.com/jupyter-incubator/sparkmagic/blob/master/examples/Magics%20in%20IPython%20Kernel.ipynb&lt;/li&gt;
+  &lt;li&gt;https://github.com/jupyter-incubator/sparkmagic/blob/master/examples/Pyspark%20Kernel.ipynb&lt;/li&gt;
+  &lt;li&gt;https://github.com/jupyter-incubator/sparkmagic&lt;/li&gt;
+  &lt;li&gt;https://github.com/GoogleCloudPlatform/dataproc-initialization-actions/tree/master/livy&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gcloud dataproc clusters create spark-livy-cluster \
+--bucket dan-test-bucket \
+--subnet default \
+--zone us-central1-a \
+--master-machine-type n1-standard-4 \
+--master-boot-disk-size 500 \
+--num-workers 2 \
+--worker-machine-type n1-standard-4 \
+--worker-boot-disk-size 500 \
+--image-version 1.2 \
+--project gvs-cs-cisco \
+--initialization-actions gs://dataproc-initialization-actions/livy/livy.sh \
+--metadata 'MINICONDA_VERSION=latest' \
+--scopes cloud-platform \
+--properties &quot;\
+dataproc:alpha.autoscaling.enabled=true,\
+dataproc:alpha.autoscaling.primary.max_workers=100,\
+dataproc:alpha.autoscaling.secondary.max_workers=100,\
+dataproc:alpha.autoscaling.cooldown_period=10m,\
+dataproc:alpha.autoscaling.scale_up.factor=0.05,\
+dataproc:alpha.autoscaling.graceful_decommission_timeout=1h&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Create a separate GPU enabled DATALAB instance (Note this is a separate machine from the cluster):
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;datalab --zone us-central1-a beta create-gpu my-datalab \
+--no-backups \
+--accelerator-count 1 \
+--machine-type n1-standard-4 \
+--idle-timeout 1d \
+--no-backups \
+--network-name default
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Connect to the datalab instance, and open the instance in your local browser at ‘http://localhost:8081’:
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;datalab connect my-datalab --no-user-checking
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&amp;lt;Then open your local web browser to http://localhost:8081&amp;gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;SSH into the datalab instance &lt;Optional&gt;:
+```
+gcloud compute --project gvs-cs-cisco ssh --zone us-central1-a my-datalab&lt;/Optional&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;this-lists-the-running-docker-containers&quot;&gt;This lists the running docker containers&lt;/h1&gt;
+&lt;p&gt;docker ps
+docker exec -it &lt;container&gt; bash&lt;/container&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+4. Connect to the running docker instance and install keras and 'sparkmagic':
+ * pip install keras
+ * conda install sparkmagic
+ * If you want to install from the jupyter notebook, run the following
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h1 id=&quot;install-a-conda-package-in-the-current-jupyter-kernel&quot;&gt;Install a conda package in the current Jupyter kernel&lt;/h1&gt;
+&lt;p&gt;import sys
+!conda install –yes –prefix {sys.prefix} sparkmagic&lt;/p&gt;
+
+&lt;h1 id=&quot;install-a-pip-package-in-the-current-jupyter-kernel&quot;&gt;Install a pip package in the current Jupyter kernel&lt;/h1&gt;
+&lt;p&gt;import sys
+!{sys.executable} -m pip install keras
+```&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Setup the connection to the spark dataproc cluster:
+    &lt;ul&gt;
+      &lt;li&gt;Enable http/https on the dataproc cluster&lt;/li&gt;
+      &lt;li&gt;Run the ‘sparkmagic’ spark manager.&lt;/li&gt;
+      &lt;li&gt;Create a new endpoint ‘http://spark-livy-cluster-m:8998’ with ‘No auth’&lt;/li&gt;
+      &lt;li&gt;Create a new session with the specified endpoint&lt;/li&gt;
+      &lt;li&gt;Add ‘%%spark’ to any spark related code you want run on the cluster.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;some-other-notes&quot;&gt;Some other notes:&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Some important notes to share:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;GCP does not actually have weaker cores than our Hadoop. With this config, GCP outperforms our Hadoop per-core.  Two factors contributing to the previously incorrect benchmarking:
+    &lt;ul&gt;
+      &lt;li&gt;Having many smaller nodes is substantially slower than having a few big nodes. This should be because there’s less shuffling over the network and more shuffling in memory (haven’t verified this) but I think it’s actually because we get entire sets of 20+ core CPUs rather than partial CPUs. I don’t really know, if someone can test and better understand this, I’d be much obliged (I’m curious).&lt;/li&gt;
+      &lt;li&gt;You can specify which generation of Intel Xeon processors we get… for free. The config below specifies Skylake, which is the best possible, but you can’t set it for preemptible nodes so they’re Sandy Bridges. I don’t think this massively impacts performance though.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Please add pre-emptible nodes instead of worker nodes to increase cluster size: preemptibles are 1/4th the cost and has very little downside for what we do.&lt;/li&gt;
+  &lt;li&gt;GCP’s default docker initialization script has a bug (dataproc-initialization-actions/docker/docker.sh) which I’ve fixed in gs://vm_init_scripts/hseokho-docker.sh. This was causing nodes to fail to start, and prevented YARN from recognizing new nodes added to the cluster.&lt;/li&gt;
+  &lt;li&gt;Executor configs are 18gb/exec, 4cores/exec. This is the most similar config per-exec to the defaults (jupyter100, jupyter200) on Hadoop. To get jupyter100mem-equivalent specs, you need to use ultra memory nodes in addition to adjusting these params&lt;/li&gt;
+  &lt;li&gt;Driver memory is 40gb, but DataLab starts to get unstable around ~10GB memory used.&lt;/li&gt;
+  &lt;li&gt;GPUs need to be shared (currently 1 v100). I think cluster needs to be restarted to attach more. I recommend that for GPU-heavy tasks you just make your own cluster for now.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>CDI AI&amp;ML Team</name><email>dagriff2@cisco.com</email></author><category term="Google Cloud, Datalab, Dataproc, GPU, ML Engine, Cloud Storage, Google Cloud Best Practices" /><summary type="html">What is Dataproc?</summary></entry><entry><title type="html">Google Cloud 2018 Conference Highlights</title><link href="http://localhost:4000/conference/google-cloud-conference-2018/" rel="alternate" type="text/html" title="Google Cloud 2018 Conference Highlights" /><published>2018-07-26T00:00:00-07:00</published><updated>2018-03-20T13:00:58-07:00</updated><id>http://localhost:4000/conference/google-cloud-conference-2018</id><content type="html" xml:base="http://localhost:4000/conference/google-cloud-conference-2018/">&lt;p&gt;Conference Date: 07/24/2018-07/26/2018&lt;/p&gt;
+
+&lt;h2 id=&quot;key-conference-takeaways&quot;&gt;Key Conference Takeaways&lt;/h2&gt;
+
+&lt;h3 id=&quot;key-initiatives-for-google-cloud&quot;&gt;Key Initiatives for Google Cloud&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Standardizing around uniform software deployment using kubernettes.
+    &lt;ul&gt;
+      &lt;li&gt;Working towards on-prem kubernettes management from a google cloud portal. They’ve partnered with Cisco to try to deliver this by end of this month (August).&lt;/li&gt;
+      &lt;li&gt;Incorporating Machine Learning and AI into everything:
+        &lt;ul&gt;
+          &lt;li&gt;AI/ML Services&lt;/li&gt;
+          &lt;li&gt;Auto AI/ML&lt;/li&gt;
+          &lt;li&gt;ML Engine&lt;/li&gt;
+          &lt;li&gt;Kubernettes Kubeflow&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Orchestrate and Process all data within google cloud
+    &lt;ul&gt;
+      &lt;li&gt;Orchestration: Google cloud compose, Dataflow, Pub/Sub&lt;/li&gt;
+      &lt;li&gt;AI/ML: Dataproc, Datalab, Dataflow, ML Engine, Big Query w/ ML&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;ML/AI Use Cases, Common Practices
+    &lt;ul&gt;
+      &lt;li&gt;New Common Practice:
+        &lt;ul&gt;
+          &lt;li&gt;ML in practice should have an automated performance tracking and re-training mechanism. Data and model freshness should be a part of enterprise ML pipelines moving forward, and a backup plan should be in place for when a model’s performance gets low over time.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;New Common Practice:
+        &lt;ul&gt;
+          &lt;li&gt;Use ‘Kubeflow’ (A kubernettes based ML pipeline template) for developing and running ML pipelines. Kubeflow can then be used to deploy an ML pipeline on any kubernettes engine, whether on a laptop, on prem, on an edge device, or on a cloud kubernettes cluster.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Orchestration Use Cases:
+        &lt;ul&gt;
+          &lt;li&gt;Most use cases for Dataflow, Pub/Sub, and Cloud Compose deal with ingesting event or batch data, transforming it, and routing it to multiple storage containers or micro-services. For general job management&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;ML Use Cases (Where we would likely focus):
+        &lt;ul&gt;
+          &lt;li&gt;Most ML/AI use cases used Dataflow, Dataproc, Datalab, and ML Engine for gathering and training data, with Cloud Compose and Kubernettes running a query able micro-service for applying predictions with a trained model. Any data is typically stored either in the google cloud data store, or in cloud buckets. Some scenarios also fuse a static data store with information about some object (like a customer) and on the fly processing data (like what a customer is buying in a particular transaction) using a fusion of Pub/Sub and Dataflow.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Product overviews
+    &lt;ul&gt;
+      &lt;li&gt;Google Cloud Compose:
+        &lt;ul&gt;
+          &lt;li&gt;Built from apache airflow for managing job workflow graphs. A programmatic way to define workflows and jobs to be run in an automated fashion in the cloud. This is for managing general jobs, beyond data processing specific jobs.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Dataflow:
+        &lt;ul&gt;
+          &lt;li&gt;Built from apache beam. A distributed mechanism for building streaming and batch data transformation and enrichment pipelines. This is focused on designing and constructing data processing pipelines.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Dataproc:
+        &lt;ul&gt;
+          &lt;li&gt;A fully managed cloud Hadoop/Spark cluster that can be spun up and down and is charged at a per-second usage (along with all hardware resources the cluster sits on top of).&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Datalab:
+        &lt;ul&gt;
+          &lt;li&gt;A managed environment that you can write and run jupyter notebooks on, with computations occurring on cloud resources that have been set up previously (Like Dataproc). It is also commonly used at a visualization engine for data exploration (Has some pretty interesting features here) and for visualization and plotting.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;ML Engine:
+        &lt;ul&gt;
+          &lt;li&gt;An API that allows for a user to submit Tensorflow based jobs with sets of parameters to be trained on google cloud resources.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Big Query:
+        &lt;ul&gt;
+          &lt;li&gt;An OLAP analysis-based data analysis system for performing processing over large amounts of data. It is meant as an analysis-based system, and continually pulling data out of it is considered an anti-pattern. Big Query now also has a set of ‘ML’ extensions for linear regression and logistic regression, but it isn’t very extensive or flexible.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;cloud-session-notes&quot;&gt;Cloud Session Notes&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Session: Creating customer value with AI
+    &lt;ul&gt;
+      &lt;li&gt;Google is trying to make AI easy, fast, useful
+        &lt;ul&gt;
+          &lt;li&gt;Easy to build&lt;/li&gt;
+          &lt;li&gt;Fast to build and use&lt;/li&gt;
+          &lt;li&gt;Generating ROI&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Problem domains
+        &lt;ul&gt;
+          &lt;li&gt;Generalized (ocado) personalized customer experience. Assessing sentiment of emails for automated responses.&lt;/li&gt;
+          &lt;li&gt;Demand forecasting and automated efficiency&lt;/li&gt;
+          &lt;li&gt;Spotting patterns&lt;/li&gt;
+          &lt;li&gt;Adding structure to unstructured language. Make sense out of images in box repository. 
+      * 90% of data in a company is unstructured, so giving structure to this data is big.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Why use GCP AI?
+        &lt;ul&gt;
+          &lt;li&gt;Scale
+            &lt;ul&gt;
+              &lt;li&gt;Instant access to machines&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;Speed
+            &lt;ul&gt;
+              &lt;li&gt;Cloud TPUs and other HW&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;Quality
+            &lt;ul&gt;
+              &lt;li&gt;Pre-built services.&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;Customization
+            &lt;ul&gt;
+              &lt;li&gt;ML Engine for advanced solutions that are customized.&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;General levels
+        &lt;ul&gt;
+          &lt;li&gt;AI solutions&lt;/li&gt;
+          &lt;li&gt;AI building blocks (Google AI services)&lt;/li&gt;
+          &lt;li&gt;AI Platform (To train AI models)&lt;/li&gt;
+          &lt;li&gt;Data &amp;amp; Analytics (Monitoring and visualizing)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;General users
+        &lt;ul&gt;
+          &lt;li&gt;End users
+            &lt;ul&gt;
+              &lt;li&gt;Developers&lt;/li&gt;
+              &lt;li&gt;Data Scientists&lt;/li&gt;
+              &lt;li&gt;Business owners&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;Main Google focus
+            &lt;ul&gt;
+              &lt;li&gt;Sight&lt;/li&gt;
+              &lt;li&gt;Language&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;AI Platform Goals
+            &lt;ul&gt;
+              &lt;li&gt;Train models&lt;/li&gt;
+              &lt;li&gt;Build prod flow&lt;/li&gt;
+              &lt;li&gt;Deploy anywhere&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;Adding Scikit-Learn, XGBoost support, Kubeflow
+            &lt;ul&gt;
+              &lt;li&gt;Kubeflow -&amp;gt; ML On Top of Kubernettes&lt;/li&gt;
+              &lt;li&gt;On cloud and on premises deployment.&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;Google is investing in Kaggle platform for AI/DS community for development.&lt;/li&gt;
+          &lt;li&gt;New services
+            &lt;ul&gt;
+              &lt;li&gt;Cloud Contact Center AI&lt;/li&gt;
+              &lt;li&gt;Partner with IronMountain for document understanding (NLP) for docs stored with this partner.&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;Use cases
+            &lt;ul&gt;
+              &lt;li&gt;Ocado
+                &lt;ul&gt;
+                  &lt;li&gt;Online grocer in the UK&lt;/li&gt;
+                  &lt;li&gt;Inventory/Demand prediction&lt;/li&gt;
+                  &lt;li&gt;Contact center efficiency&lt;/li&gt;
+                  &lt;li&gt;Immediate need contactability for emails (based off of NLP sentiment analysis)&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/li&gt;
+              &lt;li&gt;Kerpie
+                &lt;ul&gt;
+                  &lt;li&gt;Visual anomaly detection in food images.&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/li&gt;
+              &lt;li&gt;Vice news
+                &lt;ul&gt;
+                  &lt;li&gt;Use google translate for their purposes of content across the globe&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;General advice for ML
+            &lt;ul&gt;
+              &lt;li&gt;Google Platform
+                &lt;ul&gt;
+                  &lt;li&gt;Fast prototyping&lt;/li&gt;
+                  &lt;li&gt;Datalab, Bigquery, Dataprep pipelines (DataFlow, Dataproc)&lt;/li&gt;
+                  &lt;li&gt;Easy Model Mangement&lt;/li&gt;
+                  &lt;li&gt;Easy Hybrid Deployment&lt;/li&gt;
+                  &lt;li&gt;Multi-Framework&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/li&gt;
+              &lt;li&gt;Steps
+                &lt;ul&gt;
+                  &lt;li&gt;Start Simple with simple problems and simple models&lt;/li&gt;
+                  &lt;li&gt;Google autofill search used a simple clustering model on an initial search query.&lt;/li&gt;
+                  &lt;li&gt;Start with business problem. Let the ML tools follow.&lt;/li&gt;
+                  &lt;li&gt;Integrate into Applications. End user doesn’t care about the tools, just the results.&lt;/li&gt;
+                  &lt;li&gt;ML can open you up to new interaction paradigms. Seek out and define these new dynamic paradigms.&lt;/li&gt;
+                  &lt;li&gt;Ex. Google search -&amp;gt; From key word search to question asking and commands.&lt;/li&gt;
+                &lt;/ul&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Session: Flexible Easy Data Pipeline with Google Cloud Composer
+    &lt;ul&gt;
+      &lt;li&gt;Mainly developed by open source community (Apache Airflow)&lt;/li&gt;
+      &lt;li&gt;Overview:
+        &lt;ul&gt;
+          &lt;li&gt;New service that can be used for defining data processing pipelines.&lt;/li&gt;
+          &lt;li&gt;Initially, scheduling and managing gcloud jobs and pipelines is traditionally implemented by cron jobs, cron plus scripts (us), and finally-custom applications&lt;/li&gt;
+          &lt;li&gt;GCP Composer is meant to make it easy to create/schedule/monitor a workflow. Now generally available (Generally available)&lt;/li&gt;
+          &lt;li&gt;It is effectively a managed apache airflow.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Composer is a workflow orchestration engine and development framework.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Session: Get smarter with Marketing and Customer Data
+    &lt;ul&gt;
+      &lt;li&gt;Problem:
+        &lt;ul&gt;
+          &lt;li&gt;Most data is located in a ton of data silos, and it isn’t integrated holistically.&lt;/li&gt;
+          &lt;li&gt;13% of orgs say they’re making the most of their available customer data.&lt;/li&gt;
+          &lt;li&gt;Even Google sucks.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Prob example: Jane buys a TV. She keeps getting adds for TV after she’s bought, even from the same company.&lt;/li&gt;
+      &lt;li&gt;Data sets
+        &lt;ul&gt;
+          &lt;li&gt;Store credit cards&lt;/li&gt;
+          &lt;li&gt;Returns&lt;/li&gt;
+          &lt;li&gt;Purchase patterns&lt;/li&gt;
+          &lt;li&gt;Customer service resolution&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;The GCP data journey process
+        &lt;ul&gt;
+          &lt;li&gt;Collect, Transform, Analyze, Visualize, Activate&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Guidelines
+        &lt;ul&gt;
+          &lt;li&gt;Get the business group in the same room as the data scientists
+            &lt;ul&gt;
+              &lt;li&gt;The stupid business questions are usually followed up with more interesting ones.&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;Cloud enables
+            &lt;ul&gt;
+              &lt;li&gt;Measuring across channels better&lt;/li&gt;
+              &lt;li&gt;Forecast business results&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Predict value of any interaction.&lt;/li&gt;
+      &lt;li&gt;Predict what happens if I double investment in a product.&lt;/li&gt;
+      &lt;li&gt;Predict what will happen to the business if an artist leaves spotify’s platform.
+        &lt;ul&gt;
+          &lt;li&gt;Identify and engage the right customers&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;This is the key goal: Learn and predict what customers care about, when they care about it, and what kind of help they need.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Session: Machine Learning Made Easy: How to Build Flexible, Portable ML Stacks with Kubeflow and Elastifile
+    &lt;ul&gt;
+      &lt;li&gt;Main Technologies
+        &lt;ul&gt;
+          &lt;li&gt;Kubeflow: ML based Kubernetes pipeline for multi-cloud solutions. (December of 2017). Version 0.1&lt;/li&gt;
+          &lt;li&gt;Elastifile: Use for data portability alongside Kubeflow. (Vendor based solution). Better just to use google cloud storage bc this system is just an NFS file system (Aka, not really actually scalable)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Details/Notes
+        &lt;ul&gt;
+          &lt;li&gt;Two choices. Custom&lt;/li&gt;
+          &lt;li&gt;Initially start with containers&amp;amp;kubernetes. Things don’t work from cloud to cloud.&lt;/li&gt;
+          &lt;li&gt;Cloud Native Apps: Declaritive microservice systems (Kubernettes)&lt;/li&gt;
+          &lt;li&gt;Goal is to have a kubernettes solution for ML based pipelines in a general, generic way.&lt;/li&gt;
+          &lt;li&gt;Transitioning from Experimentation, Training, Cloud is necessary.&lt;/li&gt;
+          &lt;li&gt;Idea is to use Kubeflow as the unifying platform for building kubernettes based ML platforms.&lt;/li&gt;
+          &lt;li&gt;You really need data portability as well, because modern systems are inherently tied to the data computation system. Elastifile uses cloud connect, and elastifile cloud file system. (I probably wouldn’t use this because it is a vendor lock-in issue).&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Session: Continuous Deployment Platform for ML Models
+    &lt;ul&gt;
+      &lt;li&gt;Main Technologies
+        &lt;ul&gt;
+          &lt;li&gt;Design guide for continuous ML training.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Details Notes
+        &lt;ul&gt;
+          &lt;li&gt;Continuous deployment in ML. Aka, continually training and deploying models over time.&lt;/li&gt;
+          &lt;li&gt;Main session idea is about feedback. Need a feedback mechanism to keep the freshness of the ML model. Thus, need an ML refresh pipeline.&lt;/li&gt;
+          &lt;li&gt;Example is the baby natality dataset. Training data from 1970’s to predict natality for 2008 is an issue, because the environment is changing.&lt;/li&gt;
+          &lt;li&gt;To seriously use ML you have to keep tracking data over time, and need to keep your ML models fresh because the environment is changing over time. You need continuous test set generation, and a method for detecting when your model is over-trained, or is no longer generalizing well. By gathering data over time, we assume that we are moving towards a better understanding of reality.
+            &lt;ul&gt;
+              &lt;li&gt;Session: Hybrid Machine Learning: From the Cloud to the Edge&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Main Technologies
+        &lt;ul&gt;
+          &lt;li&gt;Tensorflow, Tensorflow lite, Kubeflow&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Details Notes
+        &lt;ul&gt;
+          &lt;li&gt;Areas of constrained compute&lt;/li&gt;
+          &lt;li&gt;Workstations, laptops, mobile, IoT devices&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>CDI AI&amp;ML Team</name><email>dagriff2@cisco.com</email></author><category term="Google Cloud, Datalab, Dataproc, GPU, ML Engine, Cloud Storage, Google Cloud Best Practices" /><summary type="html">Conference Date: 07/24/2018-07/26/2018</summary></entry></feed>

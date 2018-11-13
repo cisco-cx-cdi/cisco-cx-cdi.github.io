@@ -1,0 +1,685 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.13.0 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Deep Learning on GCP: Datalab vs ML Engine - Cisco CX AI&amp;ML</title>
+<meta name="description" content="What is ML Engine?">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Cisco CX AI&ML">
+<meta property="og:title" content="Deep Learning on GCP: Datalab vs ML Engine">
+<meta property="og:url" content="http://localhost:4000/best_practices/deeplearning-gcp-mlengine-datalab-compare/">
+
+
+  <meta property="og:description" content="What is ML Engine?">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2018-10-02T00:00:00-07:00">
+
+
+
+  <meta property="article:modified_time" content="2018-03-20T13:00:58-07:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/best_practices/deeplearning-gcp-mlengine-datalab-compare/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "",
+      "url": "http://localhost:4000",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Cisco CX AI&ML Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">Cisco CX AI&ML</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/" >About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/projects/" >Projects</a>
+            </li><li class="masthead__menu-item">
+              <a href="/blog/" >Blogs</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">CDI AI&ML Team</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        We are a group of skilled data scientists bringing actionable AI driven insights to the customer, seller, and partner domains. We consistenly bring AI&ML models to production across these three domains, and continue to push Cisco to change the way it approaches its business, and customers.
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="http://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">SJC-16-4</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+            <li><a href="https://apps.na.collabserv.com/communities/service/html/communitystart?communityUuid=b30b6dc0-df8b-4c52-ad8d-d40ec145fe9f"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:dagriff2@cisco.com">
+            <meta itemprop="email" content="dagriff2@cisco.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Deep Learning on GCP: Datalab vs ML Engine">
+    <meta itemprop="description" content="What is ML Engine?">
+    <meta itemprop="datePublished" content="October 02, 2018">
+    <meta itemprop="dateModified" content="March 20, 2018">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Deep Learning on GCP: Datalab vs ML Engine
+</h1>
+          
+            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  3 minute read
+</p>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> Deep Learning on GCP: Datalab vs ML Engine</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#what-is-ml-engine">What is ML Engine?</a></li>
+  <li><a href="#what-is-datalab">What is Datalab?</a></li>
+  <li><a href="#what-are-the-ways-we-train-deep-learning-based-models-on-gcp">What are the ways we train ‘Deep Learning’ based models on GCP?</a></li>
+  <li><a href="#why-do-we-currently-prefer-to-attach-a-gpu-instead-of-call-ml-engine">Why do we currently prefer to attach a GPU instead of call ML Engine?</a></li>
+  <li><a href="#guides-for-both-methods">Guides for Both Methods</a>
+    <ul>
+      <li><a href="#terminal-only-method-of-training-with-ml-engine">Terminal only method of training with ‘ML Engine’</a></li>
+      <li><a href="#training-on-ml-engine-from-within-a-notebook">Training on ‘ML Engine’ from within a notebook</a></li>
+      <li><a href="#ml-engine-guides-httpsgithubcomgooglecloudplatformtraining-data-analyst">ML Engine Guides: (https://github.com/GoogleCloudPlatform/training-data-analyst)</a></li>
+    </ul>
+  </li>
+</ul>
+            </nav>
+          </aside>
+        
+        <h2 id="what-is-ml-engine">What is ML Engine?</h2>
+
+<p>‘ML Engine’ is am service that google supports that allows a developer to run both ‘training’ and ‘serving’ jobs using google’s resources for ML models. ML Engine is a service that can be called for on-the-spot training of a tensorflow, XGBoost, or now (Think it’s till beta) scikit-learn models. The service provides the option to train a model using GPUs, TPUs and other resources. The service purports to be an on-demand and ‘pay as you use’ methodology for training machine learning models. More about the service can be learned here (https://cloud.google.com/ml-engine/docs/tensorflow/getting-started-training-prediction).</p>
+
+<h2 id="what-is-datalab">What is Datalab?</h2>
+
+<p>‘Datalab’ is an automated set of ‘configurations’ that have been written by google, that can be started up on any google cloud compute instance. Technically it is a ‘Docker’ container (More info on docker here: https://docs.docker.com/get-started/, TOTALLY LEARN IT!!!), which is why the configuration run on any google cloud compute instance. Datalab includes configurations for a datascience environment, as well as utilities for visualizing data sets. It also acts as a general ‘drop in’ for python ‘jupyter’ notebooks. Google’s documentation about datalab can be found here: https://cloud.google.com/datalab/docs/quickstart.</p>
+
+<p>Our team uses datalab in two main ways. The first main way is to run datalab in its own instance on google cloud compute. This method is the simplest for quick jobs, or when you need a dedicated GPU environment for running your code. Since this method starts datalab on its own instance, it does not natively have access to any spark computing clusters. However, an individual datalab instance can be connected to a remote spark cluster. The second method can be used when you need dedicated GPU, CPU, or RAM resources for running your code. It provides a quick and fairly simple way to spin up an instance (although it takes around 11 minutes to spin up) where you have dedicated access to everything. The downside here is that the remote connection to the spark cluster through a jupyter notebook is somewhat finicky. For example, imports of packages must be made from within the cell that will run on spark if you have custom packages to run. There are some potential ways around this (create an import_func() that simply imports all packages, and call that at the beginning of each cell that will run on spark).</p>
+
+<h2 id="what-are-the-ways-we-train-deep-learning-based-models-on-gcp">What are the ways we train ‘Deep Learning’ based models on GCP?</h2>
+
+<ul>
+  <li>Attach a GPU to a Datalab instance. (Our team preferrs this at the moment)</li>
+  <li>Train by sending a model and data to ‘ML Engine’.</li>
+</ul>
+
+<h2 id="why-do-we-currently-prefer-to-attach-a-gpu-instead-of-call-ml-engine">Why do we currently prefer to attach a GPU instead of call ML Engine?</h2>
+
+<p>Our team prefers enabling GPU based deep neural network training by attaching a dedicated GPU to our datalab or dataproc master instances rather than trying to utilize ML engine. There are many reasons for this, including ease of use, reduced lost developer time,and avoiding the hacky method to train models in a notebook. The reality of ML engine is that the service’s design implies that you simply build a model once, and then train it, and then deploy. As we all know, this is not the truth, and you often iteratively improve a model’s performance. Thus, being able to alternate between making a change in your model and training it quickly and seamlessly is very important. It’s possible to do this with GCP, but only in a very hacky way (aka, structuring the actual model code as a python package with its own setup file, using  %%writetofile to write a model from a jupyter notebook,  and %%bash to ship pre-processed data to google cloud buckets, to run the google cloud ML Engine command line command to train the model from within a jupyter notebook, and again using it to download the trained model back to the local notebook). While configuring projects like this might be a good practice to move towards as we develop new models, it’s currently not a very advantageous use of time and resources, unless code requires TPUs to be able to iterate on model development.</p>
+
+<h2 id="guides-for-both-methods">Guides for Both Methods</h2>
+
+<h3 id="terminal-only-method-of-training-with-ml-engine">Terminal only method of training with ‘ML Engine’</h3>
+
+<p>Quickstart Guide: https://cloud.google.com/ml-engine/docs/tensorflow/getting-started-training-prediction</p>
+
+<h3 id="training-on-ml-engine-from-within-a-notebook">Training on ‘ML Engine’ from within a notebook</h3>
+
+<p>Packaging the python code for training: https://cloud.google.com/ml-engine/docs/tensorflow/packaging-trainer</p>
+
+<p>Running the custom code from within a jupyter notebook (Follow this tutorial): https://github.com/GoogleCloudPlatform/training-data-analyst/blob/master/courses/machine_learning/deepdive/06_structured</p>
+
+<h3 id="ml-engine-guides-httpsgithubcomgooglecloudplatformtraining-data-analyst">ML Engine Guides: (https://github.com/GoogleCloudPlatform/training-data-analyst)</h3>
+
+<ul>
+  <li>Custom python model packaging (Can be done from within a notebook):
+    <ul>
+      <li>https://towardsdatascience.com/how-to-train-machine-learning-models-in-the-cloud-using-cloud-ml-engine-3f0d935294b3</li>
+    </ul>
+  </li>
+  <li>Good Example Code:
+    <ul>
+      <li>https://github.com/GoogleCloudPlatform/training-data-analyst</li>
+      <li>(Some examples of full jupyter notebook based method of training and deploying models) https://github.com/GoogleCloudPlatform/training-data-analyst/tree/master/courses/machine_learning/deepdive/06_structured</li>
+    </ul>
+  </li>
+  <li>Example end-to-end model training and deployment:
+    <ul>
+      <li>https://codelabs.developers.google.com/codelabs/cloud-ml-engine-image-classification/index.html?index=..%2F..%2Findex#0</li>
+    </ul>
+  </li>
+  <li>Cloud ML Samples:
+    <ul>
+      <li>https://github.com/GoogleCloudPlatform/cloudml-samples/</li>
+    </ul>
+  </li>
+  <li>Python Client API Guide
+    <ul>
+      <li>https://cloud.google.com/ml-engine/docs/tensorflow/python-guide</li>
+    </ul>
+  </li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/" class="page__taxonomy-item" rel="tag"></a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/" class="page__taxonomy-item" rel="tag"></a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/" class="page__taxonomy-item" rel="tag"></a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/" class="page__taxonomy-item" rel="tag"></a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/" class="page__taxonomy-item" rel="tag"></a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/" class="page__taxonomy-item" rel="tag"></a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/" class="page__taxonomy-item" rel="tag"></a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/" class="page__taxonomy-item" rel="tag"></a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/" class="page__taxonomy-item" rel="tag"></a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#google-cloud" class="page__taxonomy-item" rel="tag">Google_Cloud</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/" class="page__taxonomy-item" rel="tag"></a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/" class="page__taxonomy-item" rel="tag"></a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/" class="page__taxonomy-item" rel="tag"></a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#best-practices" class="page__taxonomy-item" rel="tag">Best_Practices</a>
+    
+    </span>
+  </p>
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-03-20">March 20, 2018</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Deep+Learning+on+GCP%3A+Datalab+vs+ML+Engine%20http%3A%2F%2Flocalhost%3A4000%2Fbest_practices%2Fdeeplearning-gcp-mlengine-datalab-compare%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fbest_practices%2Fdeeplearning-gcp-mlengine-datalab-compare%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=http%3A%2F%2Flocalhost%3A4000%2Fbest_practices%2Fdeeplearning-gcp-mlengine-datalab-compare%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fbest_practices%2Fdeeplearning-gcp-mlengine-datalab-compare%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/best_practices/deeplearning-on-gcp-gpus/" class="pagination--pager" title="Deep Learning With GPUs and Spark on Google Cloud
+">Previous</a>
+    
+    
+      <a href="/conference/open-data-science-conference/" class="pagination--pager" title="Open Data Science 2018 Conference Highlights
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/best_practices/calibration-curves-ml/" rel="permalink">Calibration Curves: How Confident Are Your Confidence Scores?
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  less than 1 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">##
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/conference/open-data-science-conference/" rel="permalink">Open Data Science 2018 Conference Highlights
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  4 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Conference Date: 11/2/2018-11/3/2018
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/best_practices/deeplearning-on-gcp-gpus/" rel="permalink">Deep Learning With GPUs and Spark on Google Cloud
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  8 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">What is Dataproc?
+
+</p>
+  </article>
+</div>
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title" itemprop="headline">
+      
+        <a href="/conference/google-cloud-conference-2018/" rel="permalink">Google Cloud 2018 Conference Highlights
+</a>
+      
+    </h2>
+    
+      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
+
+
+
+
+  7 minute read
+</p>
+    
+    <p class="archive__item-excerpt" itemprop="description">Conference Date: 07/24/2018-07/26/2018
+
+</p>
+  </article>
+</div>
+        
+      </div>
+    </div>
+  
+  
+</div>
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://apps.na.collabserv.com/communities/service/html/communitystart?communityUuid=b30b6dc0-df8b-4c52-ad8d-d40ec145fe9f"><i class="fas fa-link" aria-hidden="true"></i> Cisco Communities Page</a></li>
+        
+      
+        
+          <li><a href="https://wwwin-github.cisco.com/GVS-CS-DSX"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2018 Cisco CX AI&ML. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>
